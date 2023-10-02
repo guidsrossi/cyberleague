@@ -223,23 +223,139 @@
 
 </body>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM62NW2Q0E">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QM62NW2Q0E">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QM62NW2Q0E');
 
-  gtag('config', 'G-QM62NW2Q0E');
-</script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const whatsappButton = document.getElementById("whatsappButton");
+        
+            whatsappButton.addEventListener("click", function () {
+            const phoneNumber = "+5511993782839";
+            const message = "Gostaria de saber mais sobre os cursos.";
+            const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+        
+            window.open(url, "_blank");
+            });
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const whatsappButton = document.getElementById("whatsappPromo");
+        
+            whatsappButton.addEventListener("click", function () {
+            const phoneNumber = "+5511993782839";
+            const message = "PROMOÇÃO INAUGURAÇÃO CYBER LEAGUE.";
+            const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+        
+            window.open(url, "_blank");
+            });
+        });
+        
+        var mymap = L.map('mapa').setView([-23.457078430903408, -46.50929681867313], 13); // Nova Iorque
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(mymap);
+
+        var marker = L.marker([-23.457078430903408, -46.50929681867313]).addTo(mymap);
+        marker.bindPopup("Cyber League").openPopup();
+    </script>
 
 <style>
+
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&family=Orbitron&display=swap');
 
     .title{
         font-family: 'Orbitron', sans-serif;
-    }  
+    }
+
+    .logo-completa{
+    height: 120px;
+    width: auto;
+    padding: 0px;
+    margin: 0px;
+    }
+
+    .logo{
+        height: 70px;
+        width: auto;
+        padding-left: 30px;
+    }
+
+    .evolua{
+        height: 400px;
+        width: auto;
+    }
+
+    .footer {
+        background-color: #FFD700;
+        padding: 20px;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .navbar-color{
+        background-color: #FFD700;
+    }
+
+    .carousel-caption {
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .card {
+        border: none;
+        transition: transform 0.3s;
+    }
+    .card:hover {
+        transform: scale(1.02);
+    }
+
+    .nav-link:hover {
+        transform: scale(0.9);
+        transition: transform 0.3s;
+    }
+
+    .math{
+        height: 300px;
+        width: auto;
+    }
+
+
+    .div-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 70vh;
+    }
+
+    .nav-link .fab {
+        font-size: 24px;
+    }
+
+    #whatsappButton {
+        position: fixed;
+        bottom: 15px;
+        right: 20px;
+        border: none;
+        cursor: pointer;
+        background-image: url("img/whatsapp.png");
+        background-size: cover;
+        background-position: center;
+        width: 100px;
+        height: auto;
+        z-index: 9999
+    }
+
+    #whatsappButton:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s;
+    }
 
 </style>
 
