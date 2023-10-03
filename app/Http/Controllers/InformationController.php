@@ -16,7 +16,10 @@ class InformationController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Course::all();
+        $carousels = Carousel::all();
+        $info = Information::find('1');
+        return view('admin.index', compact('courses', 'carousels', 'info'));
     }
 
     /**
@@ -70,16 +73,10 @@ class InformationController extends Controller
             ]);
 
             DB::commit();
-            return response()->json([
-                'message' => 'Course created successfully',
-                'course' => $course
-            ], 201);
+            return redirect()->route('admin.index');
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json([
-                'message' => 'Course creation failed',
-                'error' => $e->getMessage()
-            ], 409);
+            return redirect()->route('admin.index');
         }
     }
 
@@ -147,16 +144,10 @@ class InformationController extends Controller
             $info->save();
 
             DB::commit();
-            return response()->json([
-                'message' => 'Course created successfully',
-                'course' => $course
-            ], 201);
+            return redirect()->route('admin.index');
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json([
-                'message' => 'Course creation failed',
-                'error' => $e->getMessage()
-            ], 409);
+            return redirect()->route('admin.index');
         }
     }
 
