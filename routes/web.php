@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\InformationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,5 @@ Auth::routes();
 
 
 // Route::middleware('auth')->group(function(){
-    Route::resource('/admin', 'InformationController');
+    Route::resource('/admin', InformationController::class);
 // });
