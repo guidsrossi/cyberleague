@@ -81,12 +81,30 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Imagem1</td>
-                    <td>Imagem2</td>
-                    <td>Imagem3</td>
-                    <td>Imagem4</td>
-                    <td>Imagem5</td>
-                    <td>Imagem6</td>
+                    <td>
+                        <input type="text" hidden class="form-control" name="courses[0][name]" value="Robótica">
+                        <input type="file" class="form-control" name="courses[0][image]">
+                    </td>
+                    <td>
+                        <input type="text" hidden class="form-control" name="courses[1][name]" value="Informática">
+                        <input type="file" class="form-control" name="courses[1][image]">
+                    </td>
+                    <td>
+                        <input type="text" hidden class="form-control" name="courses[2][name]" value="Programação">
+                        <input type="file" class="form-control" name="courses[2][image]">
+                    </td>
+                    <td>
+                        <input type="text" hidden class="form-control" name="courses[3][name]" value="Design">
+                        <input type="file" class="form-control" name="courses[3][image]">
+                    </td>
+                    <td>
+                        <input type="text" hidden class="form-control" name="courses[4][name]" value="Criação de Games">
+                        <input type="file" class="form-control" name="courses[4][image]">
+                    </td>
+                    <td>
+                        <input type="text" hidden class="form-control" name="courses[5][name]" value="Profissionalizantes">
+                        <input type="file" class="form-control" name="courses[5][image]">
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -97,7 +115,7 @@
         <div class="row">
             <div class="col-12 my-5">
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="yt_link">
                     <label for="floatingInput">Digite o link</label>
                 </div>
             </div>

@@ -25,4 +25,7 @@ Route::get('/admhome-cyberleague', 'AdminController@index')->name('admin.access'
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::middleware('auth')->group(function(){
+    Route::resource('/admin', 'InformationController');
+// });
