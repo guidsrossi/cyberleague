@@ -123,6 +123,36 @@
     </div>
 
     <div class="text-center container">
+        <h2>ADICIONE AS INFORMAÇÕES DE CONTATO</h2>
+        <div class="row my-5">
+            <div class="col-12 my-1">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="yt_link">
+                    <label for="floatingInput">Celular</label>
+                </div>
+            </div>
+            <div class="col-12 my-1">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="yt_link">
+                    <label for="floatingInput">Telefone</label>
+                </div>
+            </div>
+            <div class="col-12 my-1">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="yt_link">
+                    <label for="floatingInput">Email</label>
+                </div>
+            </div>
+            <div class="col-12 my-1">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="yt_link">
+                    <label for="floatingInput">Endereço</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center container">
         <h2>MUDANÇAS NA TELA DE CURSOS</h2>
         <table class="table table-bordered">
             <thead>
