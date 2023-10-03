@@ -16,10 +16,11 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
 
 Route::resource('/home', 'HomeController');
+Route::get('/courses', 'HomeController@courses')->name('courses');
 Route::get('/admhome-cyberleague', 'AdminController@index')->name('admin.access');
 
 Auth::routes();
