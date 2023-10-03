@@ -17,7 +17,7 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('image');
         });
     }
