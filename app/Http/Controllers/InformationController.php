@@ -19,7 +19,8 @@ class InformationController extends Controller
         $courses = Course::all();
         $carousels = Carousel::all();
         $info = Information::find('1');
-        return view('admin.index', compact('courses', 'carousels', 'info'));
+        $topics = CourseTopic::all();
+        return view('admin.index', compact('courses', 'carousels', 'info', 'topics'));
     }
 
     /**
@@ -38,44 +39,112 @@ class InformationController extends Controller
         DB::beginTransaction();
         try {
 
-            foreach ($request->courses as $course) {
-                $image = $course['image'];
-                $course = Course::create([
-                    'name' => $course['name'],
-                    'description' => $course['description'],
-                    'image' => $image->store('courses', 'public'),
-                ]);
-
-                $topics = $course['topics'];
-                foreach ($topics as $topic) {
-                    CourseTopic::create([
-                        'course_id' => $course->id,
-                        'name' => $topic['name'],
-                    ]);
+            $carousels_ids = Carousel::all()->pluck('id')->toArray();
+            $deleted_items = json_decode($request->deleted_items, true);
+            if(!isset($request->carousels)){
+                foreach ($carousels_ids as $carousel_id) {
+                    $carousel = Carousel::find($carousel_id);
+                    $carousel->delete();
+                }
+            }
+            else{
+                foreach ($request->carousels as $carousel) {
+                    if (!in_array($carousel['carousels_id'], $deleted_items)){
+                        $carousel = Carousel::find($carousel['carousels_id']);
+                        $carousel->delete();
+                    }
+                    else if(in_array($carousel['carousels_id'], $carousels_ids)) {
+                        // $image = $carousel['image'];
+                        $carousel = Carousel::find($carousel['carousels_id']);
+                        $carousel->title1 = $carousel['title1'];
+                        $carousel->title2 = $carousel['title2'];
+                        // $carousel->image = $image->store('carousels', 'public');
+                        $carousel->save();
+                    }
+                    else{
+                        $image = $carousel['image'];
+                        $carousel = Carousel::create([
+                            'title1' => $carousel['title1'],
+                            'title2' => $carousel['title2'],
+                            'image' => $image->store('carousels', 'public'),
+                        ]);
+                    }
                 }
             }
 
-            foreach ($request->carousels as $carousel) {
-                $image = $carousel['image'];
-                $carousel = Carousel::create([
-                    'title1' => $carousel['title1'],
-                    'title2' => $carousel['title2'],
-                    'image' => $image->store('carousels', 'public'),
+            
+            foreach ($request->courses as $course) {
+                $course_db = Course::where('name', $course['name'])->first();
+                if(!$course_db){
+
+                    if($course['name'] != 'matematica'){
+                        $image = $course['image'];
+                        $course_db = Course::create([
+                            'name' => $course['name'],
+                            // 'description' => $course['description'],
+                            'image' => $image->store('courses', 'public'),
+                        ]);
+                    }
+                    else{
+                        $course_db = Course::create([
+                            'name' => $course['name']
+                            // 'description' => $course['description'],
+                        ]);
+                    }
+                }
+                else{
+                    $course_db->name = $course['name'];
+                    // $course->description = $course['description'];
+                    if(isset($course['image'])){
+                        $image = $course['image'];
+                        $course_db->image = $image->store('courses', 'public');
+                    }
+                    $course_db->save();
+                }
+
+                $topics_db = CourseTopic::where('course_id', $course_db->id)->get();
+                foreach ($topics_db as $topic_db) {
+                    $topic_db->delete();
+                }
+
+                if(isset($course['topics'])){
+                    $topics = $course['topics'];
+                    foreach ($topics as $topic) {
+                        CourseTopic::create([
+                            'course_id' => $course_db->id,
+                            'name' => $topic['title'],
+                            'description' => $topic['description'],
+                        ]);
+                    }
+                }
+            }
+        
+
+
+            $info = Information::find('1');
+            if ($info) {
+                $info->yt_link = $request->yt_link;
+                $info->cellphone = $request->cellphone;
+                $info->telephone = $request->telephone;
+                $info->email = $request->email;
+                $info->address = $request->address;
+                $info->save();
+            }
+            else{
+                $info = Information::create([
+                    'yt_link' => $request->yt_link,
+                    'cellphone' => $request->cellphone,
+                    'telephone' => $request->telephone,
+                    'email' => $request->email,
+                    'address' => $request->address,
                 ]);
             }
-
-            $info = Information::create([
-                'yt_link' => $request->yt_link,
-                'cellphone' => $request->cellphone,
-                'telephone' => $request->telephone,
-                'email' => $request->email,
-                'address' => $request->address,
-            ]);
 
             DB::commit();
             return redirect()->route('admin.index');
         } catch (\Exception $e) {
             DB::rollBack();
+            dd($e);
             return redirect()->route('admin.index');
         }
     }
@@ -101,54 +170,7 @@ class InformationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        DB::beginTransaction();
-        try {
-
-            // dlte all courses
-            Course::truncate();
-            // delete all carousels
-            Carousel::truncate();
-
-            foreach ($request->courses as $course) {
-                $image = $course['image'];
-                $course = Course::create([
-                    'name' => $course['name'],
-                    'description' => $course['description'],
-                    'image' => $image->store('courses', 'public'),
-                ]);
-
-                $topics = $course['topics'];
-                foreach ($topics as $topic) {
-                    CourseTopic::create([
-                        'course_id' => $course->id,
-                        'name' => $topic['name'],
-                    ]);
-                }
-            }
-
-            foreach ($request->carousels as $carousel) {
-                $image = $carousel['image'];
-                $carousel = Carousel::create([
-                    'title1' => $carousel['title1'],
-                    'title2' => $carousel['title2'],
-                    'image' => $image->store('carousels', 'public'),
-                ]);
-            }
-
-            $info = Information::find('1');
-            $info->yt_link = $request->yt_link;
-            $info->cellphone = $request->cellphone;
-            $info->telephone = $request->telephone;
-            $info->email = $request->email;
-            $info->address = $request->address;
-            $info->save();
-
-            DB::commit();
-            return redirect()->route('admin.index');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->route('admin.index');
-        }
+        //
     }
 
     /**

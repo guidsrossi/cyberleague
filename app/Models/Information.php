@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Information extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'yt_link',
+        'cellphone',
+        'telephone',
+        'email',
+        'address',
+    ];
 }

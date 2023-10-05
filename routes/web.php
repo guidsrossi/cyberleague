@@ -20,8 +20,8 @@ Route::get('/', function () {
     return view('home.index');
 });
 
-Route::resource('/home', 'HomeController');
-Route::get('/courses', 'HomeController@courses')->name('courses');
+Route::resource('/home', InformationController::class);
+Route::get('/courses', [HomeController::class, 'courses'])->name('courses');
 Route::get('/admhome-cyberleague', 'AdminController@index')->name('admin.access');
 
 Auth::routes();

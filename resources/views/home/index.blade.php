@@ -167,10 +167,10 @@
 
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-6 mb-4">
+            <div class="col-bg-6 col-12 mb-4 text-center">
                 <img class="evolua img-fluid" src="/img/logo_completa.jpg" alt="Teste">
             </div>
-            <div class="col-md-6 align-middle">
+            <div class="col-bg-6 col-12 align-middle">
                 <h1 class="text-center">POUCAS VAGAS</h1>
                 <p class="mt-5" style="font-size: 20px;">Aproveite a promoção, durante este mês com matrícula e material totalmente <strong>GRATUITOS</strong>. Clique abaixo e receba e mais informações:</>
                 <p id="whatsappPromo" class="btn btn-warning w-100"><strong>OBTENHA DESCONTO</strong></p>
@@ -264,6 +264,8 @@
 
         var marker = L.marker([-23.457078430903408, -46.50929681867313]).addTo(mymap);
         marker.bindPopup("Cyber League").openPopup();
+
+
     </script>
 
 <style>
@@ -288,7 +290,7 @@
     }
 
     .evolua{
-        height: 400px;
+        height: 300px;
         width: auto;
     }
 

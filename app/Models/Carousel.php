@@ -10,6 +10,12 @@ class Carousel extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'title1',
+        'title2',
+        'image',
+    ];
+
     public function topics()
     {
         return $this->hasMany(CourseTopic::class);

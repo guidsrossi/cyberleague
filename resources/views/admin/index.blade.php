@@ -42,28 +42,28 @@
         </div>
     </nav>
     
-
+<form action="{{ route('admin.store') }}" method="POST" enctype="multipart/form-data">
+    @csrf
     <div class="text-center container mt-5">
         <h2>ADICIONE AS IMAGENS E O TEXTO DO CARROSEL</h2>
         <table class="table table-bordered my-5">
             <thead>
                 <tr>
-                    <td>Imagem1</td>
+                    <td>Imagem</td>
                     <td>Título</td>
                     <td>Subtítulo</td>
-                </tr>
-                <tr>
-                    <td>Imagem2</td>
-                    <td>Título</td>
-                    <td>Subtítulo</td>
-                </tr>
-                <tr>
-                    <td>Imagem3</td>
-                    <td>Título</td>
-                    <td>Subtítulo</td>
+                    <td></td>
                 </tr>
             </thead>
+            <tbody id="tbodyCarousel">
+
+            </tbody>
         </table>
+        <div class="col-12 d-flex" style="justify-content:end; padding:0;">
+            <div class="d-flex col-2 w-150 ms-auto mb-4 flex-row-reverse removed" onclick="addCarousel()" style="padding:0;">
+                <button type="button" class="btn btn-primary removed"  >+</button>
+            </div>
+        </div>
     </div>
 
     <div class="text-center container">
@@ -82,29 +82,36 @@
             <tbody>
                 <tr>
                     <td>
-                        <input type="text" hidden class="form-control" name="courses[0][name]" value="Robótica">
-                        <input type="file" class="form-control" name="courses[0][image]">
+                        <input type="text" hidden class="form-control" name="courses[robotica][name]" value="robotica">
+                        <input type="file" class="form-control" name="courses[robotica][image]">
+                        <a href="/storage/{{$courses->where('name', 'robotica')->first()->image}}" target="_blank">Ver imagem</a>
                     </td>
                     <td>
-                        <input type="text" hidden class="form-control" name="courses[1][name]" value="Informática">
-                        <input type="file" class="form-control" name="courses[1][image]">
+                        <input type="text" hidden class="form-control" name="courses[informatica][name]" value="informatica">
+                        <input type="file" class="form-control" name="courses[informatica][image]">
+                        <a href="/storage/{{$courses->where('name', 'informatica')->first()->image}}" target="_blank">Ver imagem</a>
                     </td>
                     <td>
-                        <input type="text" hidden class="form-control" name="courses[2][name]" value="Programação">
-                        <input type="file" class="form-control" name="courses[2][image]">
+                        <input type="text" hidden class="form-control" name="courses[programacao][name]" value="programacao">
+                        <input type="file" class="form-control" name="courses[programacao][image]">
+                        <a href="/storage/{{$courses->where('name', 'programacao')->first()->image}}" target="_blank">Ver imagem</a>
                     </td>
                     <td>
-                        <input type="text" hidden class="form-control" name="courses[3][name]" value="Design">
-                        <input type="file" class="form-control" name="courses[3][image]">
+                        <input type="text" hidden class="form-control" name="courses[design][name]" value="design">
+                        <input type="file" class="form-control" name="courses[design][image]">
+                        <a href="/storage/{{$courses->where('name', 'design')->first()->image}}" target="_blank">Ver imagem</a>
                     </td>
                     <td>
-                        <input type="text" hidden class="form-control" name="courses[4][name]" value="Criação de Games">
-                        <input type="file" class="form-control" name="courses[4][image]">
+                        <input type="text" hidden class="form-control" name="courses[games][name]" value="games">
+                        <input type="file" class="form-control" name="courses[games][image]">
+                        <a href="/storage/{{$courses->where('name', 'games')->first()->image}}" target="_blank">Ver imagem</a>
                     </td>
                     <td>
-                        <input type="text" hidden class="form-control" name="courses[5][name]" value="Profissionalizantes">
-                        <input type="file" class="form-control" name="courses[5][image]">
+                        <input type="text" hidden class="form-control" name="courses[profissionalizantes][name]" value="profissionalizantes">
+                        <input type="file" class="form-control" name="courses[profissionalizantes][image]">
+                        <a href="/storage/{{$courses->where('name', 'profissionalizantes')->first()->image}}" target="_blank">Ver imagem</a>
                     </td>
+                    <input type="text" hidden class="form-control" name="courses[matematica][name]" hidden value="profissionalizantes">
                 </tr>
             </tbody>
         </table>
@@ -115,7 +122,7 @@
         <div class="row">
             <div class="col-12 my-5">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="yt_link">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="yt_link" value="{{$info->yt_link}}">
                     <label for="floatingInput">Digite o link</label>
                 </div>
             </div>
@@ -127,25 +134,25 @@
         <div class="row my-5">
             <div class="col-12 my-1">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="yt_link">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="cellphone" value="{{$info->cellphone}}">
                     <label for="floatingInput">Celular</label>
                 </div>
             </div>
             <div class="col-12 my-1">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="yt_link">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="telephone" value="{{$info->telephone}}">
                     <label for="floatingInput">Telefone</label>
                 </div>
             </div>
             <div class="col-12 my-1">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="yt_link">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" value="{{$info->email}}">
                     <label for="floatingInput">Email</label>
                 </div>
             </div>
             <div class="col-12 my-1">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="yt_link">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="address" value="{{$info->address}}">
                     <label for="floatingInput">Endereço</label>
                 </div>
             </div>
@@ -159,37 +166,28 @@
                 <tr>
                     <td>
                         <!-- Botão para abrir o modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#robotica">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#roboticaModal">
                             Robótica
                         </button>
                         
                         <!-- Modal -->
-                        <div class="modal fade" id="robotica" tabindex="-1" aria-labelledby="robotica" aria-hidden="true">
+                        <div class="modal fade" id="roboticaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="robotica">Robótica</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Robótica</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                 <!-- Formulário dentro do modal -->
-                                <form>
-                                    <div class="mb-3">
-                                    <label for="titulo" class="form-label">Título</label>
-                                    <input type="text" class="form-control" id="titulo">
+                                <div id="robotica">
                                     </div>
                                     <div class="mb-3">
-                                    <label for="conteudo" class="form-label">Conteúdo</label>
-                                    <textarea class="form-control" id="conteudo" rows="3"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                    <button type="button" class="btn btn-primary">+</button>
-                                    </div>
-                                </form>
+                                     <button type="button" class="btn btn-primary" onclick="addCourse('robotica')">+</button>
+                                </div>
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                <button type="button" class="btn btn-primary" id="adicionarMais">Mais</button>
                                 </div>
                             </div>
                             </div>
@@ -197,37 +195,28 @@
                     </td>
                     <td>
                         <!-- Botão para abrir o modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#informatica">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#informaticaModal">
                             Informática
                         </button>
                         
                         <!-- Modal -->
-                        <div class="modal fade" id="informatica" tabindex="-1" aria-labelledby="informatica" aria-hidden="true">
+                        <div class="modal fade" id="informaticaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="informatica">Informática</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Informática</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                 <!-- Formulário dentro do modal -->
-                                <form>
-                                    <div class="mb-3">
-                                    <label for="titulo" class="form-label">Título</label>
-                                    <input type="text" class="form-control" id="titulo">
+                                <div id="informatica">
                                     </div>
                                     <div class="mb-3">
-                                    <label for="conteudo" class="form-label">Conteúdo</label>
-                                    <textarea class="form-control" id="conteudo" rows="3"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                    <button type="button" class="btn btn-primary">+</button>
-                                    </div>
-                                </form>
+                                     <button type="button" class="btn btn-primary" onclick="addCourse('informatica')">+</button>
+                                </div>
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                <button type="button" class="btn btn-primary" id="adicionarMais">Mais</button>
                                 </div>
                             </div>
                             </div>
@@ -235,12 +224,12 @@
                     </td>
                     <td>
                         <!-- Botão para abrir o modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#programacao">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#programacaoModal">
                             Programação
                         </button>
                         
                         <!-- Modal -->
-                        <div class="modal fade" id="programacao" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="programacaoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -249,23 +238,14 @@
                                 </div>
                                 <div class="modal-body">
                                 <!-- Formulário dentro do modal -->
-                                <form>
-                                    <div class="mb-3">
-                                    <label for="titulo" class="form-label">Título</label>
-                                    <input type="text" class="form-control" id="titulo">
+                                <div id="programacao">
                                     </div>
                                     <div class="mb-3">
-                                    <label for="conteudo" class="form-label">Conteúdo</label>
-                                    <textarea class="form-control" id="conteudo" rows="3"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                    <button type="button" class="btn btn-primary">+</button>
-                                    </div>
-                                </form>
+                                     <button type="button" class="btn btn-primary" onclick="addCourse('programacao')">+</button>
+                                </div>
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                <button type="button" class="btn btn-primary" id="adicionarMais">Mais</button>
                                 </div>
                             </div>
                             </div>
@@ -273,12 +253,12 @@
                     </td>
                     <td>
                         <!-- Botão para abrir o modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#design">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#designModal">
                             Design
                         </button>
                         
                         <!-- Modal -->
-                        <div class="modal fade" id="design" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="designModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -287,23 +267,14 @@
                                 </div>
                                 <div class="modal-body">
                                 <!-- Formulário dentro do modal -->
-                                <form>
-                                    <div class="mb-3">
-                                    <label for="titulo" class="form-label">Título</label>
-                                    <input type="text" class="form-control" id="titulo">
+                                <div id="design">
                                     </div>
                                     <div class="mb-3">
-                                    <label for="conteudo" class="form-label">Conteúdo</label>
-                                    <textarea class="form-control" id="conteudo" rows="3"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                    <button type="button" class="btn btn-primary">+</button>
-                                    </div>
-                                </form>
+                                     <button type="button" class="btn btn-primary" onclick="addCourse('design')">+</button>
+                                </div>
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                <button type="button" class="btn btn-primary" id="adicionarMais">Mais</button>
                                 </div>
                             </div>
                             </div>
@@ -311,12 +282,12 @@
                     </td>
                     <td>
                         <!-- Botão para abrir o modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#games">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#gamesModal">
                             Games
                         </button>
                         
                         <!-- Modal -->
-                        <div class="modal fade" id="games" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="gamesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -325,23 +296,14 @@
                                 </div>
                                 <div class="modal-body">
                                 <!-- Formulário dentro do modal -->
-                                <form>
-                                    <div class="mb-3">
-                                    <label for="titulo" class="form-label">Título</label>
-                                    <input type="text" class="form-control" id="titulo">
+                                <div id="games">
                                     </div>
                                     <div class="mb-3">
-                                    <label for="conteudo" class="form-label">Conteúdo</label>
-                                    <textarea class="form-control" id="conteudo" rows="3"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                    <button type="button" class="btn btn-primary">+</button>
-                                    </div>
-                                </form>
+                                     <button type="button" class="btn btn-primary" onclick="addCourse('games')">+</button>
+                                </div>
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                <button type="button" class="btn btn-primary" id="adicionarMais">Mais</button>
                                 </div>
                             </div>
                             </div>
@@ -349,12 +311,12 @@
                     </td>
                     <td>
                         <!-- Botão para abrir o modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#profissionalizantes">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#profissionalizantesModal">
                             Profissionalizantes
                         </button>
                         
                         <!-- Modal -->
-                        <div class="modal fade" id="profissionalizantes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="profissionalizantesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -363,23 +325,15 @@
                                 </div>
                                 <div class="modal-body">
                                 <!-- Formulário dentro do modal -->
-                                <form>
-                                    <div class="mb-3">
-                                    <label for="titulo" class="form-label">Título</label>
-                                    <input type="text" class="form-control" id="titulo">
+                                <div class="modal-body">
+                                <!-- Formulário dentro do modal -->
+                                    <div id="profissionalizantes">
                                     </div>
                                     <div class="mb-3">
-                                    <label for="conteudo" class="form-label">Conteúdo</label>
-                                    <textarea class="form-control" id="conteudo" rows="3"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                    <button type="button" class="btn btn-primary">+</button>
-                                    </div>
-                                </form>
+                                     <button type="button" class="btn btn-primary" onclick="addCourse('profissionalizantes')">+</button>
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                <button type="button" class="btn btn-primary" id="adicionarMais">Mais</button>
                                 </div>
                             </div>
                             </div>
@@ -387,12 +341,12 @@
                     </td>
                     <td>
                         <!-- Botão para abrir o modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#matematica">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#matematicaModal">
                             Matemática
                         </button>
                         
                         <!-- Modal -->
-                        <div class="modal fade" id="matematica" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="matematicaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -401,23 +355,14 @@
                                 </div>
                                 <div class="modal-body">
                                 <!-- Formulário dentro do modal -->
-                                <form>
-                                    <div class="mb-3">
-                                    <label for="titulo" class="form-label">Título</label>
-                                    <input type="text" class="form-control" id="titulo">
+                                    <div id="matematica">
                                     </div>
                                     <div class="mb-3">
-                                    <label for="conteudo" class="form-label">Conteúdo</label>
-                                    <textarea class="form-control" id="conteudo" rows="3"></textarea>
+                                     <button type="button" class="btn btn-primary" onclick="addCourse('matematica')">+</button>
                                     </div>
-                                    <div class="mb-3">
-                                    <button type="button" class="btn btn-primary">+</button>
-                                    </div>
-                                </form>
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                <button type="button" class="btn btn-primary" id="adicionarMais">Mais</button>
                                 </div>
                             </div>
                             </div>
@@ -428,16 +373,181 @@
         </table>
     </div>
 
+    <input type="text" name="deleted_items" value="" hidden/>
+
     <div class="container text-center my-5">
         <button class="btn btn-primary">Salvar</button>
-        <button class="btn btn-primary">Descartar</button>
+        <a class="btn btn-primary" href="{{ route('admin.index') }}">Desfazer</a>
     </div>
+
+</form>
 
 
     
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <script>
+
+        var count = 0;
+    
+        function addCarousel(model){
+
+            if (!model) {
+                model = {
+                    "id": 0,
+                    "image": "",
+                    "title1": "",
+                    "title2": "",
+                }
+            }
+            
+            let divDad = document.getElementById("tbodyCarousel");
+            
+            div = document.createElement("tr");
+
+            div.innerHTML += `
+                <td>
+                    <input type="text" name="carousels[${count}][carousels_id]" value="${model.id}" hidden/>
+                     
+                    ${model.image ? `<a href="/storage/${model.image}" target="_blank">Ver imagem</a>` : '<input type="file" class="form-control"  name="carousels[${count}][image]" value="" }/> '}        
+                <td>
+                    <input type="text" class="form-control"  name="carousels[${count}][title1]" value="${model.title1}" }/>
+                </td>
+                <td>
+                    <input type="text" class="form-control"  name="carousels[${count}][title2]" value="${model.title2}" }/>          
+                </td>
+                <td> 
+                    <button type="button" class="btn btn-danger" onclick="removeItem(this, ${model.id})">-</button>
+                </td>
+            `;
+            
+            count++;
+            divDad.appendChild(div);
+        }
+        function removeItem(element, id){
+            element.parentNode.parentNode.remove();
+
+            // remove do carousels array
+            if (id) {
+                deleted_items.push(id);
+
+                document.querySelector('input[name="deleted_items"]').value = JSON.stringify(deleted_items);
+            }
+        }
+
+        var model;
+        var deleted_items = [];
+        var divCount = 0;
+
+        function addCourse(type, model = null) {
+            const divContainer = document.getElementById(type);
+            
+            const newDiv = document.createElement("div");
+
+            if (!model) {
+                model = {
+                    "id": 0,
+                    "name": "",
+                    "description": "",
+                }
+            }
+
+            
+            newDiv.innerHTML = `
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Título</label>
+                    <input type="text" name="courses[${type}][topics][${divCount}][title]" class="form-control" id="titulo" value="${model.name}">
+                </div>
+                <div class="mb-3">
+                    <label for="conteudo" class="form-label">Conteúdo</label>
+                    <textarea class="form-control" name="courses[${type}][topics][${divCount}][description]" id="conteudo" rows="3">${model.description}</textarea>
+                </div>
+                <div class="mb-3">
+                    <button type="button" class="btn btn-danger" onclick="removeDiv(this)">-</button>
+                </div>
+            `;
+            
+            divContainer.appendChild(newDiv);
+            divCount++;
+        }
+
+        function removeDiv(element) {
+            element.parentNode.parentNode.remove();
+        }
+
+        var robotica, informatica, programacao, design, games, profissionalizantes, matematica;
+
+        @php
+            $model = [];
+            foreach ($carousels as $carousel) {
+                $model[] = [
+                    'id' => $carousel->id,
+                    'image' => $carousel->image,
+                    'title1' => $carousel->title1,
+                    'title2' => $carousel->title2,
+                ];
+            }
+            $model = json_encode($model);
+            echo "model = $model;";
+
+
+            $robotica = $courses->where('name', 'robotica')->first()->course_topics;
+            $informatica = $courses->where('name', 'informatica')->first()->course_topics;
+            $programacao = $courses->where('name', 'programacao')->first()->course_topics;
+            $design = $courses->where('name', 'design')->first()->course_topics;
+            $games = $courses->where('name', 'games')->first()->course_topics;
+            $profissionalizantes = $courses->where('name', 'profissionalizantes')->first()->course_topics;
+            $matematica = $courses->where('name', 'matematica')->first()->course_topics;
+
+            echo "robotica = " . json_encode($robotica) . ";";
+            echo "informatica = " . json_encode($informatica) . ";";
+            echo "programacao = " . json_encode($programacao) . ";";
+            echo "design = " . json_encode($design) . ";";
+            echo "games = " . json_encode($games) . ";";
+            echo "profissionalizantes = " . json_encode($profissionalizantes) . ";";
+            echo "matematica = " . json_encode($matematica) . ";";
+        @endphp
+
+        window.onload = function(){
+            console.log(model);
+            model.forEach(element => {
+                addCarousel(element);
+            });
+
+            robotica.forEach(element => {
+                addCourse('robotica', element);
+            });
+
+            informatica.forEach(element => {
+                addCourse('informatica', element);
+            });
+
+            programacao.forEach(element => {
+                addCourse('programacao', element);
+            });
+
+            design.forEach(element => {
+                addCourse('design', element);
+            });
+
+            games.forEach(element => {
+                addCourse('games', element);
+            });
+
+            profissionalizantes.forEach(element => {
+                addCourse('profissionalizantes', element);
+            });
+
+            matematica.forEach(element => {
+                console.log(element);
+                addCourse('matematica', element);
+            });
+        }
+
+
+    </script>
 
 </body>
 
