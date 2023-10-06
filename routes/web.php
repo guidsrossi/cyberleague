@@ -17,16 +17,17 @@ use App\Http\Controllers\InformationController;
 */
 
 Route::get('/', function () {
-    return view('home.index');
+    return redirect(route('home.index'));
 });
 
-Route::resource('/home', InformationController::class);
+// Route::resource('/home', InformationController::class);
 Route::get('/courses', [HomeController::class, 'courses'])->name('courses');
+Route::get('/home', [InformationController::class, 'home'])->name('home.index');
 Route::get('/admhome-cyberleague', 'AdminController@index')->name('admin.access');
 
 Auth::routes();
 
 
 // Route::middleware('auth')->group(function(){
-    Route::resource('/admin', InformationController::class);
+Route::resource('/admin', InformationController::class);
 // });

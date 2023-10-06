@@ -23,7 +23,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" style="color: #c0a71b;" aria-current="page" href="index.html"><strong>INÍCIO</strong></a>
+                    <a class="nav-link active" style="color: #c0a71b;" aria-current="page" href="{{ route('home.index') }}"><strong>INÍCIO</strong></a>
                     <a class="nav-link" href="#robotica"><strong>ROBÓTICA <i class="fas fa-robot"></i></strong></a>
                     <a class="nav-link" href="#informatica"><strong>INFORMÁTICA <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512"><path d="M384 96V320H64L64 96H384zM64 32C28.7 32 0 60.7 0 96V320c0 35.3 28.7 64 64 64H181.3l-10.7 32H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H352c17.7 0 32-14.3 32-32s-14.3-32-32-32H277.3l-10.7-32H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm464 0c-26.5 0-48 21.5-48 48V432c0 26.5 21.5 48 48 48h64c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48H528zm16 64h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H544c-8.8 0-16-7.2-16-16s7.2-16 16-16zm-16 80c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H544c-8.8 0-16-7.2-16-16zm32 160a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg></i></strong></a>
                     <a class="nav-link" href="#programacao"><strong>PROGRAMAÇÃO <i class="fa-solid fa-code"></i></strong></a>
@@ -44,47 +44,84 @@
         </div>
     </nav>
 
+    @php
+        $robotica = $courses->where('name', 'robotica')->first()->course_topics;
+        $informatica = $courses->where('name', 'informatica')->first()->course_topics;
+        $programacao = $courses->where('name', 'programacao')->first()->course_topics;
+        $design = $courses->where('name', 'design')->first()->course_topics;
+        $games = $courses->where('name', 'games')->first()->course_topics;
+        $profissionalizantes = $courses->where('name', 'profissionalizantes')->first()->course_topics;
+        $matematica = $courses->where('name', 'matematica')->first()->course_topics;
+    @endphp
+
     <div id="robotica" class="container my-5">
         <h2 class="mb-4 title">ROBÓTICA <i class="fas fa-robot"></i></h2>
+
+        @foreach($robotica as $robo)
+            <h5>{{$robo->name}}</h5>
+            <span>{!!$robo->description!!}</span>
+        @endforeach
+        
+
     </div>
 
     <div id="informatica" class="container my-5">
         <h2 class="mb-4 title">INFORMÁTICA  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512"><path d="M384 96V320H64L64 96H384zM64 32C28.7 32 0 60.7 0 96V320c0 35.3 28.7 64 64 64H181.3l-10.7 32H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H352c17.7 0 32-14.3 32-32s-14.3-32-32-32H277.3l-10.7-32H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm464 0c-26.5 0-48 21.5-48 48V432c0 26.5 21.5 48 48 48h64c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48H528zm16 64h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H544c-8.8 0-16-7.2-16-16s7.2-16 16-16zm-16 80c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H544c-8.8 0-16-7.2-16-16zm32 160a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg></i></strong></a></h2>
 
-        <div class="mod"></div>
+        @foreach($informatica as $informatic)
+            <h5>{{$informatic->name}}</h5>
+            <p>{{$informatic->description}}</p>
+        @endforeach
+
     </div>
 
     <div id="programacao" class="container my-5">
         <h2 class="mb-4 title">PROGRAMAÇÃO <i class="fa-solid fa-code"></i></h2>
 
-        <div class="mod"></div>
+        @foreach($programacao as $programaca)
+            <h5>{{$programaca->name}}</h5>
+            <p>{{$programaca->description}}</p>
+        @endforeach
+
     </div>
 
     <div id="design" class="container my-5">
             <h2 class="mb-4 title">DESIGN <i class="fa-solid fa-brush"></i></h2>
             
-            <div class="mod"></div>
+            @foreach($design as $desig)
+            <h5>{{$desig->name}}</h5>
+            <p>{{$desig->description}}</p>
+        @endforeach
     </div>
 
     <div id="games" class="container my-5">
         <h2 class="mb-4 title">GAMES <i class="fa-solid fa-gamepad"></i></h2>
 
         
-        <div class="mod"></div>
+        @foreach($games as $game)
+            <h5>{{$desig->name}}</h5>
+            <p>{{$desig->description}}</p>
+        @endforeach
     </div>
 
     <div id="profissionalizantes" class="container my-5">
         <h2 class="mb-4 title">PROFISSIONALIZANTES <i class="fa-solid fa-business-time"></i></h2>
 
         
-        <div class="mod"></div>
+        @foreach($profissionalizantes as $profissionalizante)
+            <h5>{{$profissionalizante->name}}</h5>
+            <p>{{$profissionalizante->description}}</p>
+        @endforeach
     </div>
 
     <div id="matematica" class="container my-5">
         <h2 class="mb-4 title">MATEMÁTICA <i class="fa-solid fa-square-root-variable"></i></h2>
 
         
-        <div class="mod"></div>
+        @foreach($matematica as $matematic)
+            <h5>{{$matematic->name}}</h5>
+            <p>{{$matematic->description}}</p>
+        @endforeach
     </div>
 
     <img src="img/whatsapp.png" id="whatsappButton">

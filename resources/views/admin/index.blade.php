@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
+    <!-- Inclua os arquivos de estilo do TinyMCE -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/themes/silver/theme.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/tinymce.min.js"></script>
+
+
 </head>
 <body>
 
@@ -25,10 +30,6 @@
                 <div class="navbar-nav">
                     <a class="nav-link active" style="color: #c0a71b;" aria-current="page" href="#"><strong>INÍCIO</strong></a>
                     <a class="nav-link" href="#nossos_cursos"><strong>NOSSOS CURSOS</strong></a>
-                    <a class="nav-link" href="#promocao"><strong>PROMOÇÃO</strong></a>
-                    <a class="nav-link" href="#sobre_nos"><strong>SOBRE NÓS</strong></a>
-                    <a class="nav-link" href="#contatos"><strong>CONTATOS</strong></a>
-                    <a class="nav-link" href="#localizacao"><strong>LOCALIZAÇÃO</strong></a>
                 </div>
             </div>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
@@ -445,6 +446,7 @@
             const divContainer = document.getElementById(type);
             
             const newDiv = document.createElement("div");
+            const divCount = divContainer.querySelectorAll(".course-div").length;
 
             if (!model) {
                 model = {
@@ -454,15 +456,16 @@
                 }
             }
 
+            newDiv.className = "course-div"; // Adicione uma classe para identificar as divs dos cursos
             
             newDiv.innerHTML = `
                 <div class="mb-3">
                     <label for="titulo" class="form-label">Título</label>
-                    <input type="text" name="courses[${type}][topics][${divCount}][title]" class="form-control" id="titulo" value="${model.name}">
+                    <input type="text" name="courses[${type}][topics][${divCount}][title]" class="form-control" id="titulo_${divCount}" value="${model.name}">
                 </div>
                 <div class="mb-3">
                     <label for="conteudo" class="form-label">Conteúdo</label>
-                    <textarea class="form-control" name="courses[${type}][topics][${divCount}][description]" id="conteudo" rows="3">${model.description}</textarea>
+                    <textarea class="form-control" name="courses[${type}][topics][${divCount}][description]" id="textEditor_${type}_${divCount}" rows="3">${model.description}</textarea>
                 </div>
                 <div class="mb-3">
                     <button type="button" class="btn btn-danger" onclick="removeDiv(this)">-</button>
@@ -470,7 +473,14 @@
             `;
             
             divContainer.appendChild(newDiv);
-            divCount++;
+
+            // Inicialize o TinyMCE para o novo campo de texto
+            tinymce.init({
+                selector: `#textEditor_${type}_${divCount}`,
+                plugins: 'advlist autolink lists link image charmap print preview anchor',
+                toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright',
+                font_formats: 'sans-serif;Arial=arial,helvetica,sans-serif;Tahoma=tahoma,arial,helvetica,sans-serif;',
+            });
         }
 
         function removeDiv(element) {
@@ -545,6 +555,13 @@
                 addCourse('matematica', element);
             });
         }
+
+        tinymce.init({
+            selector: '#textEditor',
+            plugins: 'advlist autolink lists link image charmap print preview anchor',
+            toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright',
+            font_formats: 'sans-serif;Arial=arial,helvetica,sans-serif;Tahoma=tahoma,arial,helvetica,sans-serif;',
+        });
 
 
     </script>

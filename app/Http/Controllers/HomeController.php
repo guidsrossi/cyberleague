@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Carousel;
+use App\Models\Course;
 
 class HomeController extends Controller
 {
@@ -23,11 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index');
+        $carousels = Carousel::all();
+        return view('home.index', compact('carousels'));
     }
 
     function courses()
     {
-        return view('courses.index');
+        $courses = Course::all();
+        return view('courses.index', compact('courses'));
     }
 }

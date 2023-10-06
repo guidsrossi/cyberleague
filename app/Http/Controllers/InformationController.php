@@ -20,7 +20,25 @@ class InformationController extends Controller
         $carousels = Carousel::all();
         $info = Information::find('1');
         $topics = CourseTopic::all();
-        return view('admin.index', compact('courses', 'carousels', 'info', 'topics'));
+
+        // if (auth()->check()) {
+            return view('admin.index', compact('courses', 'carousels', 'info', 'topics'));
+        // }
+        // return view('home.index', compact('courses', 'carousels', 'info', 'topics'));
+        
+    }
+    public function home()
+    {
+        $courses = Course::all();
+        $carousels = Carousel::all();
+        $info = Information::find('1');
+        $topics = CourseTopic::all();
+
+        // if (auth()->check()) {
+            // return view('admin.index', compact('courses', 'carousels', 'info', 'topics'));
+        // }
+        return view('home.index', compact('courses', 'carousels', 'info', 'topics'));
+        
     }
 
     /**
@@ -48,26 +66,28 @@ class InformationController extends Controller
                 }
             }
             else{
-                foreach ($request->carousels as $carousel) {
-                    if (!in_array($carousel['carousels_id'], $deleted_items)){
-                        $carousel = Carousel::find($carousel['carousels_id']);
-                        $carousel->delete();
-                    }
-                    else if(in_array($carousel['carousels_id'], $carousels_ids)) {
-                        // $image = $carousel['image'];
-                        $carousel = Carousel::find($carousel['carousels_id']);
-                        $carousel->title1 = $carousel['title1'];
-                        $carousel->title2 = $carousel['title2'];
-                        // $carousel->image = $image->store('carousels', 'public');
-                        $carousel->save();
-                    }
-                    else{
-                        $image = $carousel['image'];
-                        $carousel = Carousel::create([
-                            'title1' => $carousel['title1'],
-                            'title2' => $carousel['title2'],
-                            'image' => $image->store('carousels', 'public'),
-                        ]);
+                if(isset($request->carousels)){
+                    foreach ($request->carousels as $carousel) {
+                        if ($deleted_items != null && !in_array($carousel['carousels_id'], $deleted_items)){
+                            $carousel = Carousel::find($carousel['carousels_id']);
+                            $carousel->delete();
+                        }
+                        else if(in_array($carousel['carousels_id'], $carousels_ids)) {
+                            // $image = $carousel['image'];
+                            $carousel = Carousel::find($carousel['carousels_id']);
+                            $carousel->title1 = $carousel['title1'];
+                            $carousel->title2 = $carousel['title2'];
+                            // $carousel->image = $image->store('carousels', 'public');
+                            $carousel->save();
+                        }
+                        else{
+                            $image = $carousel['image'];
+                            $carousel = Carousel::create([
+                                'title1' => $carousel['title1'],
+                                'title2' => $carousel['title2'],
+                                'image' => $image->store('carousels', 'public'),
+                            ]);
+                        }
                     }
                 }
             }
