@@ -23,7 +23,6 @@ Route::get('/', function () {
 // Route::resource('/home', InformationController::class);
 Route::get('/courses', [HomeController::class, 'courses'])->name('courses');
 Route::get('/home', [InformationController::class, 'home'])->name('home.index');
-Route::get('/admhome-cyberleague', 'AdminController@index')->name('admin.access');
 
 Auth::routes();
 

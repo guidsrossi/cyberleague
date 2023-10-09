@@ -28,8 +28,8 @@
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" style="color: #c0a71b;" aria-current="page" href="#"><strong>INÍCIO</strong></a>
-                    <a class="nav-link" href="#nossos_cursos"><strong>NOSSOS CURSOS</strong></a>
+                    <a class="nav-link active" style="color: #c0a71b;" aria-current="page" href="{{ route('home.index') }}"><strong>INÍCIO</strong></a>
+                    <a class="nav-link" href="{{ route('courses') }}"><strong>NOSSOS CURSOS</strong></a>
                 </div>
             </div>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
@@ -112,7 +112,7 @@
                         <input type="file" class="form-control" name="courses[profissionalizantes][image]">
                         <a href="/storage/{{$courses->where('name', 'profissionalizantes')->first()->image}}" target="_blank">Ver imagem</a>
                     </td>
-                    <input type="text" hidden class="form-control" name="courses[matematica][name]" hidden value="profissionalizantes">
+                    <input type="text" hidden class="form-control" name="courses[matematica][name]" hidden value="matematica">
                 </tr>
             </tbody>
         </table>
@@ -440,7 +440,7 @@
 
         var model;
         var deleted_items = [];
-        var divCount = 0;
+        var divCountText = 0;
 
         function addCourse(type, model = null) {
             const divContainer = document.getElementById(type);
@@ -465,7 +465,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="conteudo" class="form-label">Conteúdo</label>
-                    <textarea class="form-control" name="courses[${type}][topics][${divCount}][description]" id="textEditor_${type}_${divCount}" rows="3">${model.description}</textarea>
+                    <textarea class="form-control" name="courses[${type}][topics][${divCount}][description]" id="textEditor_${type}_${divCountText}" rows="3">${model.description}</textarea>
                 </div>
                 <div class="mb-3">
                     <button type="button" class="btn btn-danger" onclick="removeDiv(this)">-</button>
@@ -476,11 +476,13 @@
 
             // Inicialize o TinyMCE para o novo campo de texto
             tinymce.init({
-                selector: `#textEditor_${type}_${divCount}`,
+                selector: `#textEditor_${type}_${divCountText}`,
                 plugins: 'advlist autolink lists link image charmap print preview anchor',
                 toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright',
                 font_formats: 'sans-serif;Arial=arial,helvetica,sans-serif;Tahoma=tahoma,arial,helvetica,sans-serif;',
             });
+
+            divCountText++;
         }
 
         function removeDiv(element) {

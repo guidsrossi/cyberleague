@@ -70,7 +70,7 @@
 
         @foreach($informatica as $informatic)
             <h5>{{$informatic->name}}</h5>
-            <p>{{$informatic->description}}</p>
+            <p>{!!$informatic->description!!}</p>
         @endforeach
 
     </div>
@@ -80,7 +80,7 @@
 
         @foreach($programacao as $programaca)
             <h5>{{$programaca->name}}</h5>
-            <p>{{$programaca->description}}</p>
+            <p>{!!$programaca->description!!}</p>
         @endforeach
 
     </div>
@@ -90,7 +90,7 @@
             
             @foreach($design as $desig)
             <h5>{{$desig->name}}</h5>
-            <p>{{$desig->description}}</p>
+            <p>{!!$desig->description!!}</p>
         @endforeach
     </div>
 
@@ -100,7 +100,7 @@
         
         @foreach($games as $game)
             <h5>{{$desig->name}}</h5>
-            <p>{{$desig->description}}</p>
+            <p>{!!$desig->description!!}</p>
         @endforeach
     </div>
 
@@ -110,7 +110,7 @@
         
         @foreach($profissionalizantes as $profissionalizante)
             <h5>{{$profissionalizante->name}}</h5>
-            <p>{{$profissionalizante->description}}</p>
+            <p>{!!$profissionalizante->description!!}</p>
         @endforeach
     </div>
 
@@ -120,7 +120,7 @@
         
         @foreach($matematica as $matematic)
             <h5>{{$matematic->name}}</h5>
-            <p>{{$matematic->description}}</p>
+            <p>{!!$matematic->description!!}</p>
         @endforeach
     </div>
 

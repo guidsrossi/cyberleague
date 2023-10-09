@@ -21,10 +21,10 @@ class InformationController extends Controller
         $info = Information::find('1');
         $topics = CourseTopic::all();
 
-        // if (auth()->check()) {
+        if (auth()->check()) {
             return view('admin.index', compact('courses', 'carousels', 'info', 'topics'));
-        // }
-        // return view('home.index', compact('courses', 'carousels', 'info', 'topics'));
+        }
+        return view('home.index', compact('courses', 'carousels', 'info', 'topics'));
         
     }
     public function home()
@@ -126,7 +126,7 @@ class InformationController extends Controller
                 foreach ($topics_db as $topic_db) {
                     $topic_db->delete();
                 }
-
+                // dd($course);
                 if(isset($course['topics'])){
                     $topics = $course['topics'];
                     foreach ($topics as $topic) {
