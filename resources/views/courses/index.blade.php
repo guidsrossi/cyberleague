@@ -52,10 +52,11 @@
         $games = $courses->where('name', 'games')->first()->course_topics;
         $profissionalizantes = $courses->where('name', 'profissionalizantes')->first()->course_topics;
         $matematica = $courses->where('name', 'matematica')->first()->course_topics;
+        $gestao = $courses->where('name', 'gestao')->first()->course_topics;
     @endphp
 
     <div id="robotica" class="container my-5">
-        <h2 class="mb-4 title">ROBÓTICA <i class="fas fa-robot"></i></h2>
+        <h2 class="mb-4 title"><i class="fas fa-robot"></i> ROBÓTICA</h2>
 
         @foreach($robotica as $robo)
             <h5>{{$robo->name}}</h5>
@@ -66,7 +67,7 @@
     </div>
 
     <div id="informatica" class="container my-5">
-        <h2 class="mb-4 title">INFORMÁTICA  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512"><path d="M384 96V320H64L64 96H384zM64 32C28.7 32 0 60.7 0 96V320c0 35.3 28.7 64 64 64H181.3l-10.7 32H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H352c17.7 0 32-14.3 32-32s-14.3-32-32-32H277.3l-10.7-32H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm464 0c-26.5 0-48 21.5-48 48V432c0 26.5 21.5 48 48 48h64c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48H528zm16 64h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H544c-8.8 0-16-7.2-16-16s7.2-16 16-16zm-16 80c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H544c-8.8 0-16-7.2-16-16zm32 160a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg></i></strong></a></h2>
+        <h2 class="mb-4 title"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512"><path d="M384 96V320H64L64 96H384zM64 32C28.7 32 0 60.7 0 96V320c0 35.3 28.7 64 64 64H181.3l-10.7 32H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H352c17.7 0 32-14.3 32-32s-14.3-32-32-32H277.3l-10.7-32H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm464 0c-26.5 0-48 21.5-48 48V432c0 26.5 21.5 48 48 48h64c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48H528zm16 64h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H544c-8.8 0-16-7.2-16-16s7.2-16 16-16zm-16 80c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H544c-8.8 0-16-7.2-16-16zm32 160a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg></i> INFORMÁTICA</strong></a></h2>
 
         @foreach($informatica as $informatic)
             <h5>{{$informatic->name}}</h5>
@@ -76,7 +77,7 @@
     </div>
 
     <div id="programacao" class="container my-5">
-        <h2 class="mb-4 title">PROGRAMAÇÃO <i class="fa-solid fa-code"></i></h2>
+        <h2 class="mb-4 title"><i class="fa-solid fa-code"></i> PROGRAMAÇÃO</h2>
 
         @foreach($programacao as $programaca)
             <h5>{{$programaca->name}}</h5>
@@ -86,7 +87,7 @@
     </div>
 
     <div id="design" class="container my-5">
-            <h2 class="mb-4 title">DESIGN <i class="fa-solid fa-brush"></i></h2>
+            <h2 class="mb-4 title"><i class="fa-solid fa-brush"></i> DESIGN</h2>
             
             @foreach($design as $desig)
             <h5>{{$desig->name}}</h5>
@@ -95,7 +96,7 @@
     </div>
 
     <div id="games" class="container my-5">
-        <h2 class="mb-4 title">GAMES <i class="fa-solid fa-gamepad"></i></h2>
+        <h2 class="mb-4 title"><i class="fa-solid fa-gamepad"></i> GAMES</h2>
 
         
         @foreach($games as $game)
@@ -105,7 +106,7 @@
     </div>
 
     <div id="profissionalizantes" class="container my-5">
-        <h2 class="mb-4 title">PROFISSIONALIZANTES <i class="fa-solid fa-business-time"></i></h2>
+        <h2 class="mb-4 title"><i class="fa-solid fa-business-time"></i> PROFISSIONALIZANTES</h2>
 
         
         @foreach($profissionalizantes as $profissionalizante)
@@ -115,7 +116,37 @@
     </div>
 
     <div id="matematica" class="container my-5">
-        <h2 class="mb-4 title">MATEMÁTICA <i class="fa-solid fa-square-root-variable"></i></h2>
+        <h2 class="mb-4 title"><i class="fa-solid fa-square-root-variable"></i> MATEMÁTICA</h2>
+
+        
+        @foreach($matematica as $matematic)
+            <h5>{{$matematic->name}}</h5>
+            <p>{!!$matematic->description!!}</p>
+        @endforeach
+    </div>
+
+    <div id="matematica" class="container my-5">
+        <h2 class="mb-4 title"><i class="fa-solid fa-clipboard"></i> GESTÃO DE RH + DEPARTAMENTO PESSOAL</h2>
+
+        
+        @foreach($gestao as $gesta)
+            <h5>{{$gesta->name}}</h5>
+            <p>{!!$gesta->description!!}</p>
+        @endforeach
+    </div>
+
+    <div id="matematica" class="container my-5">
+        <h2 class="mb-4 title"><i class="fa-solid fa-wallet"></i>  VENDAS + MARKETING DIGITAL</h2>
+
+        
+        @foreach($matematica as $matematic)
+            <h5>{{$matematic->name}}</h5>
+            <p>{!!$matematic->description!!}</p>
+        @endforeach
+    </div>
+
+    <div id="matematica" class="container my-5">
+        <h2 class="mb-4 title"><i class="fa-solid fa-list-check"></i> OUTROS CURSOS</h2>
 
         
         @foreach($matematica as $matematic)
