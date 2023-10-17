@@ -178,7 +178,7 @@
             
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="/storage/{{$courses->where('name', 'profissionalizantes')->first()->image}}" class="card-img-top" style="height:400px;" alt="Profissionalizantes">
+                    <img src="/storage/{{$courses->where('name', 'gestao')->first()->image}}" class="card-img-top" style="height:400px;" alt="Profissionalizantes">
                     <div class="card-body">
                         <h5 class="card-title">GESTÃO DE RH + DEPARTAMENTO PESSOAL</h5>
                         <p class="card-text">Os cursos de Gestão de Recursos Humanos e Departamento Pessoal desempenham um papel fundamental no desenvolvimento e sucesso de organizações em todo o mundo</p>
@@ -189,7 +189,7 @@
             
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="/storage/{{$courses->where('name', 'profissionalizantes')->first()->image}}" class="card-img-top" style="height:400px;" alt="Profissionalizantes">
+                    <img src="/storage/{{$courses->where('name', 'vendas')->first()->image}}" class="card-img-top" style="height:400px;" alt="Profissionalizantes">
                     <div class="card-body">
                         <h5 class="card-title">VENDAS + MARKETING DIGITAL</h5>
                         <p class="card-text"> cursos de Vendas e Marketing Digital desempenham um papel crucial na era contemporânea, onde a tecnologia e a internet desempenham um papel cada vez mais predominante nos negócios</p>
@@ -200,7 +200,7 @@
             
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="/storage/{{$courses->where('name', 'profissionalizantes')->first()->image}}" class="card-img-top" style="height:400px;" alt="Profissionalizantes">
+                    <img src="/storage/{{$courses->where('name', 'outros')->first()->image}}" class="card-img-top" style="height:400px;" alt="Profissionalizantes">
                     <div class="card-body">
                         <h5 class="card-title">OUTROS CURSOS</h5>
                         <p class="card-text">Certamente, há uma ampla variedade de cursos disponíveis, abrangendo inúmeras áreas de conhecimento e especializações, clique no botão abaixo e descubra mais</p>
@@ -211,7 +211,7 @@
         </div>
     </div>
 
-    <h1 id="promocao" class="text-center m-4">PROMOÇÃO - MATRÍCULA E MATERIAL GRÁTIS</h1>
+    <h1 id="promocao" class="text-center m-4">{{$info->title}}</h1>
 
     <div class="container mt-5">
         <div class="row">
@@ -219,8 +219,8 @@
                 <img class="evolua img-fluid" src="/img/logo_completa.jpg" alt="Teste">
             </div>
             <div class="col-bg-6 col-12 align-middle">
-                <h1 class="text-center">POUCAS VAGAS</h1>
-                <p class="mt-5" style="font-size: 20px;">Aproveite a promoção, durante este mês com matrícula e material totalmente <strong>GRATUITOS</strong>. Clique abaixo e receba e mais informações:</>
+                <h1 class="text-center">{{$info->caption}}</h1>
+                <p class="mt-5" style="font-size: 20px;">{{$info->description}}</p>
                 <p id="whatsappPromo" class="btn btn-warning w-100"><strong>OBTENHA DESCONTO</strong></p>
             </div>
         </div>

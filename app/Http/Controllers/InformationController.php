@@ -138,8 +138,6 @@ class InformationController extends Controller
                     }
                 }
             }
-        
-
 
             $info = Information::find('1');
             if ($info) {
@@ -148,6 +146,9 @@ class InformationController extends Controller
                 $info->telephone = $request->telephone;
                 $info->email = $request->email;
                 $info->address = $request->address;
+                $info->title = $request->title;
+                $info->caption = $request->caption;
+                $info->description = $request->description;
                 $info->save();
             }
             else{
@@ -157,6 +158,9 @@ class InformationController extends Controller
                     'telephone' => $request->telephone,
                     'email' => $request->email,
                     'address' => $request->address,
+                    'title' => $request->title,
+                    'caption' => $request->caption,
+                    'description' => $request->description,
                 ]);
             }
 

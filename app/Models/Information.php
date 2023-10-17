@@ -15,5 +15,8 @@ class Information extends Model
         'telephone',
         'email',
         'address',
+        'title',
+        'caption',
+        'description',
     ];
 }

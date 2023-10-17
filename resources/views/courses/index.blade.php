@@ -53,6 +53,8 @@
         $profissionalizantes = $courses->where('name', 'profissionalizantes')->first()->course_topics;
         $matematica = $courses->where('name', 'matematica')->first()->course_topics;
         $gestao = $courses->where('name', 'gestao')->first()->course_topics;
+        $vendas = $courses->where('name', 'vendas')->first()->course_topics;
+        $outros = $courses->where('name', 'outros')->first()->course_topics;
     @endphp
 
     <div id="robotica" class="container my-5">
@@ -139,9 +141,9 @@
         <h2 class="mb-4 title"><i class="fa-solid fa-wallet"></i>  VENDAS + MARKETING DIGITAL</h2>
 
         
-        @foreach($matematica as $matematic)
-            <h5>{{$matematic->name}}</h5>
-            <p>{!!$matematic->description!!}</p>
+        @foreach($vendas as $venda)
+            <h5>{{$venda->name}}</h5>
+            <p>{!!$venda->description!!}</p>
         @endforeach
     </div>
 
@@ -149,9 +151,9 @@
         <h2 class="mb-4 title"><i class="fa-solid fa-list-check"></i> OUTROS CURSOS</h2>
 
         
-        @foreach($matematica as $matematic)
-            <h5>{{$matematic->name}}</h5>
-            <p>{!!$matematic->description!!}</p>
+        @foreach($outros as $outro)
+            <h5>{{$outro->name}}</h5>
+            <p>{!!$outro->description!!}</p>
         @endforeach
     </div>
 

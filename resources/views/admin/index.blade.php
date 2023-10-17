@@ -78,6 +78,9 @@
                     <th scope="row">Design</th>
                     <th scope="row">Criação de Games</th>
                     <th scope="row">Profissionalizantes</th>
+                    <th scope="row">Gestão de RH</th>
+                    <th scope="row">Vendas</th>
+                    <th scope="row">Outros Cursos</th>
                 </tr>
             </thead>
             <tbody>
@@ -112,11 +115,49 @@
                         <input type="file" class="form-control" name="courses[profissionalizantes][image]">
                         <a href="/storage/{{$courses->where('name', 'profissionalizantes')->first()->image}}" target="_blank">Ver imagem</a>
                     </td>
+                    <td>
+                        <input type="text" hidden class="form-control" name="courses[gestao][name]" value="gestao">
+                        <input type="file" class="form-control" name="courses[gestao][image]">
+                        <a href="/storage/{{$courses->where('name', 'gestao')->first()->image}}" target="_blank">Ver imagem</a>
+                    </td>
+                    <td>
+                        <input type="text" hidden class="form-control" name="courses[vendas][name]" value="vendas">
+                        <input type="file" class="form-control" name="courses[vendas][image]">
+                        <a href="/storage/{{$courses->where('name', 'vendas')->first()->image}}" target="_blank">Ver imagem</a>
+                    </td>
+                    <td>
+                        <input type="text" hidden class="form-control" name="courses[outros][name]" value="outros">
+                        <input type="file" class="form-control" name="courses[outros][image]">
+                        <a href="/storage/{{$courses->where('name', 'outros')->first()->image}}" target="_blank">Ver imagem</a>
+                    </td>
                     <input type="text" hidden class="form-control" name="courses[matematica][name]" hidden value="matematica">
-                    <input type="text" hidden class="form-control" name="courses[gestao][name]" hidden value="gestao">
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <div class="text-center container">
+        <h2>INFORMAÇÕES CYBER LEAGUE</h2>
+        <div class="row my-5">
+            <div class="col-12 my-1">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="title" value="{{$info->title}}">
+                    <label for="floatingInput">Título</label>
+                </div>
+            </div>
+            <div class="col-12 my-1">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="caption" value="{{$info->caption}}">
+                    <label for="floatingInput">Subtítulo</label>
+                </div>
+            </div>
+            <div class="col-12 my-1">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="description" value="{{$info->description}}">
+                    <label for="floatingInput">Descrição</label>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="text-center container">
@@ -372,12 +413,12 @@
                     </td>
                     <td>
                         <!-- Botão para abrir o modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#matematicaModal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#gestaoModal">
                             Gestão de RH
                         </button>
                         
                         <!-- Modal -->
-                        <div class="modal fade" id="matematicaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="gestaoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -401,12 +442,12 @@
                     </td>
                     <td>
                         <!-- Botão para abrir o modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#matematicaModal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vendasModal">
                             Vendas
                         </button>
                         
                         <!-- Modal -->
-                        <div class="modal fade" id="matematicaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="vendasModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -415,10 +456,10 @@
                                 </div>
                                 <div class="modal-body">
                                 <!-- Formulário dentro do modal -->
-                                    <div id="matematica">
+                                    <div id="vendas">
                                     </div>
                                     <div class="mb-3">
-                                     <button type="button" class="btn btn-primary" onclick="addCourse('matematica')">+</button>
+                                     <button type="button" class="btn btn-primary" onclick="addCourse('vendas')">+</button>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -430,12 +471,12 @@
                     </td>
                     <td>
                         <!-- Botão para abrir o modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#matematicaModal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#outrosModal">
                             Outros
                         </button>
                         
                         <!-- Modal -->
-                        <div class="modal fade" id="matematicaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="outrosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -444,10 +485,10 @@
                                 </div>
                                 <div class="modal-body">
                                 <!-- Formulário dentro do modal -->
-                                    <div id="matematica">
+                                    <div id="outros">
                                     </div>
                                     <div class="mb-3">
-                                     <button type="button" class="btn btn-primary" onclick="addCourse('matematica')">+</button>
+                                     <button type="button" class="btn btn-primary" onclick="addCourse('outros')">+</button>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -577,7 +618,7 @@
             element.parentNode.parentNode.remove();
         }
 
-        var robotica, informatica, programacao, design, games, profissionalizantes, matematica, gestao;
+        var robotica, informatica, programacao, design, games, profissionalizantes, matematica, gestao, vendas, outros;
 
         @php
             $model = [];
@@ -600,7 +641,9 @@
             $games = $courses->where('name', 'games')->first()->course_topics;
             $profissionalizantes = $courses->where('name', 'profissionalizantes')->first()->course_topics;
             $matematica = $courses->where('name', 'matematica')->first()->course_topics;
-            $gestao = $courses->where('name', 'gestao')->first()->course_topics;
+            $gestao = $courses->where('name', 'gestao')->first() ? $courses->where('name', 'gestao')->first()->course_topics : [];
+            $vendas = $courses->where('name', 'vendas')->first() ? $courses->where('name', 'vendas')->first()->course_topics : [];
+            $outros = $courses->where('name', 'outros')->first() ? $courses->where('name', 'outros')->first()->course_topics : [];
 
             echo "robotica = " . json_encode($robotica) . ";";
             echo "informatica = " . json_encode($informatica) . ";";
@@ -610,6 +653,8 @@
             echo "profissionalizantes = " . json_encode($profissionalizantes) . ";";
             echo "matematica = " . json_encode($matematica) . ";";
             echo "gestao = " . json_encode($gestao) . ";";
+            echo "vendas = " . json_encode($vendas) . ";";
+            echo "outros = " . json_encode($outros) . ";";
         @endphp
 
         window.onload = function(){
@@ -650,6 +695,16 @@
             gestao.forEach(element => {
                 console.log(element);
                 addCourse('gestao', element);
+            });
+
+            vendas.forEach(element => {
+                console.log(element);
+                addCourse('vendas', element);
+            });
+
+            outros.forEach(element => {
+                console.log(element);
+                addCourse('outros', element);
             });
         }
 
