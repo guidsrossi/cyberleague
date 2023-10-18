@@ -153,8 +153,7 @@
             </div>
             <div class="col-12 my-1">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="description" value="{{$info->description}}">
-                    <label for="floatingInput">Descrição</label>
+                    <textarea id="textEditor" name="description">{{$info->description}}</textarea>
                 </div>
             </div>
         </div>

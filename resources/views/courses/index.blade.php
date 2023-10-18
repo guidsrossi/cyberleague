@@ -31,6 +31,10 @@
                     <a class="nav-link" href="#games"><strong>CRIAÇÃO DE GAMES <i class="fa-solid fa-gamepad"></i></strong></a>
                     <a class="nav-link" href="#profissionalizantes"><strong>PROFISSIONALIZANTES <i class="fa-solid fa-business-time"></i></strong></a>
                     <a class="nav-link" href="#matematica"><strong>MATEMÁTICA <i class="fa-solid fa-square-root-variable"></i></strong></a>
+                    <form class="d-flex mx-3" id="search-form">
+                        <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar" id="search-input">
+                        <button class="btn btn-warning" type="button" id="search-button"><i class="fas fa-search"></i></button>
+                    </form>
                 </div>
             </div>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
@@ -167,6 +171,31 @@
 
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("search-button").addEventListener("click", function () {
+            const searchTerm = document.getElementById("search-input").value.trim().toLowerCase();
+
+            if (searchTerm === "") {
+                return;
+            }
+
+            const elementsToSearch = document.querySelectorAll('.container h2, .container h5, .container p');
+
+            elementsToSearch.forEach(function (element) {
+                const elementText = element.textContent.toLowerCase();
+
+                if (elementText.includes(searchTerm)) {
+                    // Role até o elemento
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    });
+</script>
+
+
 
 </body>
 

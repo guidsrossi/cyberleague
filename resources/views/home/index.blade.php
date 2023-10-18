@@ -36,6 +36,10 @@
                     <a class="nav-link" href="#sobre_nos"><strong>SOBRE NÓS</strong></a>
                     <a class="nav-link" href="#contatos"><strong>CONTATOS</strong></a>
                     <a class="nav-link" href="#localizacao"><strong>LOCALIZAÇÃO</strong></a>
+                    <form class="d-flex mx-3" id="search-form">
+                        <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar" id="search-input">
+                        <button class="btn btn-warning" type="button" id="search-button"><i class="fas fa-search"></i></button>
+                    </form>
                 </div>
             </div>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
@@ -220,8 +224,8 @@
             </div>
             <div class="col-bg-6 col-12 align-middle">
                 <h1 class="text-center">{{$info->caption}}</h1>
-                <p class="mt-5" style="font-size: 20px;">{{$info->description}}</p>
-                <p id="whatsappPromo" class="btn btn-warning w-100"><strong>OBTENHA DESCONTO</strong></p>
+                <span class="mt-5" style="font-size: 20px;">{!!$info->description!!}</span>
+                <p id="whatsappPromo" class="btn btn-warning w-100"><strong>CLIQUE AQUI E ENTRE EM CONTATO</strong></p>
             </div>
         </div>
     </div>
@@ -275,6 +279,29 @@
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("search-button").addEventListener("click", function () {
+                const searchTerm = document.getElementById("search-input").value.trim().toLowerCase();
+
+                if (searchTerm === "") {
+                    return;
+                }
+
+                const elementsToSearch = document.querySelectorAll('.container h2, .container h5, .container p');
+
+                elementsToSearch.forEach(function (element) {
+                    const elementText = element.textContent.toLowerCase();
+
+                    if (elementText.includes(searchTerm)) {
+                        // Role até o elemento
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 
     <!-- Google tag (gtag.js) -->
@@ -304,7 +331,7 @@
         
             whatsappButton.addEventListener("click", function () {
             const phoneNumber = "+5511993782839";
-            const message = "PROMOÇÃO INAUGURAÇÃO CYBER LEAGUE.";
+            const message = "Gostaria de saber mais sobre os cursos.";
             const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
         
             window.open(url, "_blank");
