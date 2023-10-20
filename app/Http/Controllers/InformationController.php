@@ -68,7 +68,7 @@ class InformationController extends Controller
             else{
                 if(isset($request->carousels)){
                     foreach ($request->carousels as $carousel) {
-                        if ($deleted_items != null && !in_array($carousel['carousels_id'], $deleted_items)){
+                        if (isset($carousel['carousels_id']) && $deleted_items != null && !in_array($carousel['carousels_id'], $deleted_items)){
                             $carousel = Carousel::find($carousel['carousels_id']);
                             if ($carousel){
                                 $carousel->delete();
