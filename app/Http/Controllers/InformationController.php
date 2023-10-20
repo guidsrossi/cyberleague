@@ -74,7 +74,7 @@ class InformationController extends Controller
                                 $carousel->delete();
                             }
                         }
-                        else if(in_array($carousel['carousels_id'], $carousels_ids)) {
+                        else if(isset($carousel['carousels_id']) && in_array($carousel['carousels_id'], $carousels_ids)) {
                             // $image = $carousel['image'];
                             $carousel = Carousel::find($carousel['carousels_id']);
                             $carousel->title1 = $carousel['title1'];
