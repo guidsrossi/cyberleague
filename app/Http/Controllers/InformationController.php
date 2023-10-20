@@ -70,7 +70,9 @@ class InformationController extends Controller
                     foreach ($request->carousels as $carousel) {
                         if ($deleted_items != null && !in_array($carousel['carousels_id'], $deleted_items)){
                             $carousel = Carousel::find($carousel['carousels_id']);
-                            $carousel->delete();
+                            if ($carousel){
+                                $carousel->delete();
+                            }
                         }
                         else if(in_array($carousel['carousels_id'], $carousels_ids)) {
                             // $image = $carousel['image'];
@@ -124,7 +126,9 @@ class InformationController extends Controller
 
                 $topics_db = CourseTopic::where('course_id', $course_db->id)->get();
                 foreach ($topics_db as $topic_db) {
-                    $topic_db->delete();
+                    if ($topic_db) {
+                        $topic_db->delete();
+                    }
                 }
                 // dd($course);
                 if(isset($course['topics'])){
