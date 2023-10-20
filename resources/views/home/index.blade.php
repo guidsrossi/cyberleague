@@ -17,6 +17,13 @@
         #mapa {
             height: 400px;
         }
+
+        .logo-completa{
+            height: 120px;
+            width: auto;
+            padding: 0px;
+            margin: 0px;
+            }
     </style>
 
 </head>
@@ -355,13 +362,6 @@
 
     .title{
         font-family: 'Orbitron', sans-serif;
-    }
-
-    .logo-completa{
-    height: 120px;
-    width: auto;
-    padding: 0px;
-    margin: 0px;
     }
 
     .logo{

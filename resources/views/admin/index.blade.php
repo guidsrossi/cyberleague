@@ -43,7 +43,7 @@
         </div>
     </nav>
     
-<form action="{{ route('admin.store') }}" method="POST" enctype="multipart/form-data">
+<form id="meuFormulario" action="{{ route('admin.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="text-center container mt-5">
         <h2>ADICIONE AS IMAGENS E O TEXTO DO CARROSEL</h2>
@@ -505,7 +505,7 @@
     <input type="text" name="deleted_items" value="" hidden/>
 
     <div class="container text-center my-5">
-        <button class="btn btn-primary">Salvar</button>
+        <button type="button" onclick="submitFormulario()" class="btn btn-primary">Salvar</button>
         <a class="btn btn-primary" href="{{ route('admin.index') }}">Desfazer</a>
     </div>
 
@@ -589,11 +589,11 @@
             newDiv.innerHTML = `
                 <div class="mb-3">
                     <label for="titulo" class="form-label">Título</label>
-                    <input type="text" name="courses[${type}][topics][${divCount}][title]" class="form-control" id="titulo_${divCount}" value="${model.name}">
+                    <input required type="text" name="courses[${type}][topics][${divCount}][title]" class="form-control" id="titulo_${divCount}" value="${model.name}">
                 </div>
                 <div class="mb-3">
                     <label for="conteudo" class="form-label">Conteúdo</label>
-                    <textarea class="form-control" name="courses[${type}][topics][${divCount}][description]" id="textEditor_${type}_${divCountText}" rows="3">${model.description}</textarea>
+                    <textarea required class="form-control" name="courses[${type}][topics][${divCount}][description]" id="textEditor_${type}_${divCountText}" rows="3">${model.description}</textarea>
                 </div>
                 <div class="mb-3">
                     <button type="button" class="btn btn-danger" onclick="removeDiv(this)">-</button>
@@ -714,6 +714,29 @@
             font_formats: 'sans-serif;Arial=arial,helvetica,sans-serif;Tahoma=tahoma,arial,helvetica,sans-serif;',
         });
 
+        function submitFormulario() {
+            const meuFormulario = document.getElementById("meuFormulario");
+            let inputs = meuFormulario.querySelectorAll("input[required], textarea[required]");
+            let valido = true;
+
+
+            for (let input of inputs) {
+                if (input.value.trim() === "") {
+                    valido = false;
+                    // input.classList.add("is-invalid");
+                } else {
+                    // input.classList.remove("is-invalid");
+                }
+            }
+
+            if (!valido) {
+                alert("Por favor, preencha todos os campos obrigatórios.");
+            }
+            else{
+                meuFormulario.submit();
+            }
+        }
+        
 
     </script>
 
