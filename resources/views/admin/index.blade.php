@@ -540,7 +540,7 @@
                 <td>
                     <input type="text" name="carousels[${count}][carousels_id]" value="${model.id}" hidden/>
                      
-                    ${model.image ? `<a href="/storage/${model.image}" target="_blank">Ver imagem</a>` : '<input type="file" class="form-control"  name="carousels[${count}][image]" value="" }/> '}        
+                    ${model.image ? `<a href="/storage/${model.image}" target="_blank">Ver imagem</a>` : `<input type="file" class="form-control"  name="carousels[${count}][image]" value="" }/> `}        
                 <td>
                     <input type="text" class="form-control"  name="carousels[${count}][title1]" value="${model.title1}" }/>
                 </td>
